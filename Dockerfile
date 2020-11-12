@@ -1,6 +1,6 @@
 FROM ubuntu:latest
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y locales python-configparser python3-wxgtk4.0 python3-ujson python3-pyudev whois vlc wget sudo avahi-daemon avahi-discover avahi-utils libnss-mdns mdns-scan libavahi-compat-libdnssd-dev gnupg gnupg1 gnupg2
 
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y locales python-configparser python3-wxgtk4.0 python3-ujson python3-pyudev whois vlc wget sudo avahi-daemon avahi-discover avahi-utils libnss-mdns mdns-scan libavahi-compat-libdnssd-dev gnupg gnupg1 gnupg2
 RUN mkdir -p /home/root/
 WORKDIR /home/root/
 
@@ -32,4 +32,8 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN wget https://github.com/openplotter/openplotter-settings/releases/download/v2.5.0-stable/openplotter-settings_2.5.0-stable_all.deb
 RUN dpkg -i openplotter-settings_2.5.0-stable_all.deb
+
+RUN wget http://archive.ubuntu.com/ubuntu/pool/universe/w/wxwidgets3.0/libwxgtk3.0-0v5_3.0.4+dfsg-3_amd64.deb
+RUN dpkg -i libwxgtk3.0-0v5_3.0.4+dfsg-3_amd64.deb
+
 CMD ["bash"]
