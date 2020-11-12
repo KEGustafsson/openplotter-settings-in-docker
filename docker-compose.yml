@@ -1,0 +1,18 @@
+version: "2"
+services:
+  openplotter:
+    build: .
+    image: openplotter
+    container_name: openplotter
+    network_mode: host
+    environment:
+      - "DISPLAY"
+    volumes:
+      - $HOME/.Xauthority:/root/.Xauthority:rw 
+      - $PWD/../signalk_conf/charts:/root/charts
+      - $PWD/../zygrib/grib:/root/grib
+    restart: unless-stopped
+    entrypoint: sh /home/root/startup.sh
+    logging:
+      options:
+        max-size: 10m
